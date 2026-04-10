@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ΕΠΑΟΣ Βόνιτσας – Δήλωση Συμμετοχής</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rock: #1a1a18;
+    --chalk: #f5f0e8;
+    --moss: #4a7c59;
+    --moss-light: #6aab7d;
+    --terra: #c4602a;
+    --sky: #a8c8e8;
+    --rope: #d4a843;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--rock);
+    color: var(--chalk);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated rock texture background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(74,124,89,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(196,96,42,0.06) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--moss);
+    color: var(--chalk);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 12vw, 88px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    color: var(--chalk);
+    margin-bottom: 12px;
+  }
+
+  .title span {
+    color: var(--terra);
+    display: block;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.6);
+    letter-spacing: 1px;
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  /* Divider rope */
+  .rope-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .rope-divider::before, .rope-divider::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--rope) 0, var(--rope) 6px, transparent 6px, transparent 12px);
+    opacity: 0.5;
+  }
+  .rope-icon {
+    font-size: 22px;
+  }
+
+  /* Info cards */
+  .info-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .info-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 16px 12px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .info-card:hover { background: rgba(255,255,255,0.07); }
+
+  .info-card .ic-icon { font-size: 22px; margin-bottom: 8px; }
+  .info-card .ic-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    margin-bottom: 4px;
+  }
+  .info-card .ic-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--chalk);
+  }
+
+  /* Form card */
+  .form-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 40px 36px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .form-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--moss-light);
+    margin-bottom: 28px;
+  }
+
+  .field-group {
+    margin-bottom: 22px;
+  }
+
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 8px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 13px 16px;
+    color: var(--chalk);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--moss-light);
+    background: rgba(106,171,125,0.08);
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: rgba(245,240,232,0.25);
+  }
+
+  textarea { resize: vertical; min-height: 90px; }
+
+  select option { background: #2a2a28; color: var(--chalk); }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Radio group */
+  .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .radio-opt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .radio-opt input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--moss-light);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .radio-opt span {
+    font-size: 14px;
+    color: rgba(245,240,232,0.8);
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: block;
+  }
+
+  .radio-opt input[type="radio"]:checked + span {
+    background: rgba(74,124,89,0.25);
+    border-color: var(--moss-light);
+    color: var(--moss-light);
+  }
+
+  /* Hide the actual radio, use span as visual */
+  .radio-opt { position: relative; }
+  .radio-opt input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* Checkbox */
+  .checkbox-opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+
+  .checkbox-opt input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--moss-light);
+    flex-shrink: 0;
+    margin-top: 2px;
+    cursor: pointer;
+  }
+
+  .checkbox-opt span {
+    font-size: 13px;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.5;
+  }
+
+  /* Submit button */
+  .submit-btn {
+    width: 100%;
+    background: var(--moss);
+    color: var(--chalk);
+    border: none;
+    border-radius: 6px;
+    padding: 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    margin-top: 32px;
+    transition: background 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+
+  .submit-btn:hover {
+    background: var(--moss-light);
+    transform: translateY(-1px);
+  }
+
+  .submit-btn:hover::before { transform: translateX(100%); }
+  .submit-btn:active { transform: translateY(0); }
+
+  /* Success state */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .success-msg.show { display: block; }
+  .success-msg .s-icon { font-size: 56px; margin-bottom: 16px; }
+  .success-msg h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: var(--moss-light);
+    margin-bottom: 10px;
+  }
+  .success-msg p { font-size: 15px; color: rgba(245,240,232,0.6); line-height: 1.6; }
+
+  /* Footer note */
+  .footer-note {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(245,240,232,0.3);
+    margin-top: 32px;
+    line-height: 1.6;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .footer-note a {
+    color: var(--moss-light);
+    text-decoration: none;
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Required asterisk */
+  .req { color: var(--terra); margin-left: 2px; }
+
+  @media (max-width: 500px) {
+    .form-card { padding: 28px 20px; }
+    .info-strip { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="badge">🧗 ΕΠΑΟΣ Βόνιτσας</div>
+    <div class="title">
+      Δωρεάν<span>Αναρρίχηση</span>
+    </div>
+    <p class="subtitle">
+      Με αφορμή την Παγκόσμια Ημέρα Υγείας<br>
+      Δήλωσε συμμετοχή και γνώρισε το άθλημα από κοντά
+    </p>
+  </header>
+
+  <div class="info-strip">
+    <div class="info-card">
+      <div class="ic-icon">📍</div>
+      <div class="ic-label">Τόπος</div>
+      <div class="ic-value">Αναρριχητικό Πεδίο ΕΠΑΟΣ</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-icon">💰</div>
+      <div class="ic-label">Κόστος</div>
+      <div class="ic-value">Δωρεάν</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-icon">👥</div>
+      <div class="ic-label">Για ποιους</div>
+      <div class="ic-value">Όλα τα επίπεδα</div>
+    </div>
+  </div>
+
+  <div class="rope-divider"><span class="rope-icon">🪢</span></div>
+
+  <div class="form-card">
+    <div class="form-title">Δήλωση Συμμετοχής</div>
+
+    <div id="formContent">
+      <div class="field-row">
+        <div class="field-group">
+          <label>Όνομα <span class="req">*</span></label>
+          <input type="text" id="firstName" placeholder="π.χ. Νίκος" required>
+        </div>
+        <div class="field-group">
+          <label>Επώνυμο <span class="req">*</span></label>
+          <input type="text" id="lastName" placeholder="π.χ. Παπαδόπουλος" required>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="name@example.com" required>
+      </div>
+
+      <div class="field-group">
+        <label>Τηλέφωνο</label>
+        <input type="tel" id="phone" placeholder="69xxxxxxxx">
+      </div>
+
+      <div class="field-group">
+        <label>Ηλικιακή Ομάδα <span class="req">*</span></label>
+        <div class="radio-group">
+          <label class="radio-opt">
+            <input type="radio" name="age" value="under18">
+            <span>Κάτω των 18</span>
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="age" value="18-30">
+            <span>18–30</span>
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="age" value="31-50">
+            <span>31–50</span>
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="age" value="50+">
+            <span>50+</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Εμπειρία στην Αναρρίχηση <span class="req">*</span></label>
+        <div class="radio-group">
+          <label class="radio-opt">
+            <input type="radio" name="exp" value="none">
+            <span>Καθόλου</span>
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="exp" value="beginner">
+            <span>Λίγη</span>
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="exp" value="intermediate">
+            <span>Μέτρια</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Πώς έμαθες για την εκδήλωση;</label>
+        <select id="source">
+          <option value="" disabled selected>Επίλεξε...</option>
+          <option value="facebook">Facebook</option>
+          <option value="friend">Από φίλο / γνωστό</option>
+          <option value="poster">Αφίσα / Ανακοίνωση</option>
+          <option value="other">Άλλο</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>Σχόλια / Ερωτήσεις</label>
+        <textarea id="comments" placeholder="Γράψε ό,τι θέλεις να μας πεις..."></textarea>
+      </div>
+
+      <div class="field-group">
+        <label class="checkbox-opt">
+          <input type="checkbox" id="consent" required>
+          <span>Συναινώ στην επεξεργασία των προσωπικών μου δεδομένων αποκλειστικά για την οργάνωση της εκδήλωσης (GDPR). <span class="req">*</span></span>
+        </label>
+      </div>
+
+      <button class="submit-btn" onclick="submitForm()">✓ Δήλωσε Συμμετοχή</button>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <div class="s-icon">🎉</div>
+      <h3>Η δήλωσή σου καταχωρήθηκε!</h3>
+      <p>Σε ευχαριστούμε για το ενδιαφέρον σου.<br>
+      Θα επικοινωνήσουμε μαζί σου σύντομα με λεπτομέρειες.<br><br>
+      Σε περιμένουμε στα βράχια! 🧗</p>
+    </div>
+  </div>
+
+  <p class="footer-note">
+    Για πληροφορίες, επικοινώνησε μαζί μας στη σελίδα του<br>
+    <a href="https://www.facebook.com" target="_blank">ΕΠΑΟΣ Βόνιτσας στο Facebook</a><br><br>
+    Η υγεία είναι κίνηση. Σε περιμένουμε! 🏔️
+  </p>
+
+</div>
+
+<script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm4aNJ-4CWAMVWIR_OevhtSsVu-fAobAPrf4hnXJqGNibPll5gfuv-s-Fvckhcz7Gv/exec';
+
+  async function submitForm() {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName  = document.getElementById('lastName').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    const age       = document.querySelector('input[name="age"]:checked');
+    const exp       = document.querySelector('input[name="exp"]:checked');
+    const consent   = document.getElementById('consent').checked;
+
+    if (!firstName || !lastName) { alert('Παρακαλώ συμπλήρωσε όνομα και επώνυμο.'); return; }
+    if (!email || !email.includes('@')) { alert('Παρακαλώ συμπλήρωσε έγκυρο email.'); return; }
+    if (!age) { alert('Παρακαλώ επίλεξε ηλικιακή ομάδα.'); return; }
+    if (!exp) { alert('Παρακαλώ επίλεξε επίπεδο εμπειρίας.'); return; }
+    if (!consent) { alert('Παρακαλώ αποδέξου τους όρους επεξεργασίας δεδομένων.'); return; }
+
+    const btn = document.querySelector('.submit-btn');
+    btn.textContent = '⏳ Αποστολή...';
+    btn.disabled = true;
+
+    // GET με URL parameters — λύνει πλήρως το CORS
+    const params = new URLSearchParams({
+      firstName,
+      lastName,
+      email,
+      phone:      document.getElementById('phone').value.trim() || '-',
+      age:        age.value,
+      experience: exp.value,
+      source:     document.getElementById('source').value || '-',
+      comments:   document.getElementById('comments').value.trim() || '-'
+    });
+
+    try {
+      await fetch(SCRIPT_URL + '?' + params.toString(), {
+        method: 'GET',
+        mode: 'no-cors'
+      });
+
+      document.getElementById('formContent').style.display = 'none';
+      const msg = document.getElementById('successMsg');
+      msg.classList.add('show');
+      msg.style.animation = 'fadeUp 0.6s ease both';
+
+    } catch (err) {
+      btn.textContent = '✓ Δήλωσε Συμμετοχή';
+      btn.disabled = false;
+      alert('Παρουσιάστηκε σφάλμα κατά την αποστολή. Παρακαλώ δοκίμασε ξανά.');
+      console.error(err);
+    }
+  }
+
+  // Enter key moves to next field
+  document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]')
+    .forEach((el, i, arr) => {
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && arr[i+1]) { e.preventDefault(); arr[i+1].focus(); }
+      });
+    });
+</script>
+</body>
+</html>
